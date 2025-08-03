@@ -1,4 +1,4 @@
-import { Button } from "flowbite-react";
+// import { Button } from "flowbite-react";
 import "./App.css";
 import { useEffect, useState } from "react";
 import CardComponent from "./components/CardComponent";
@@ -29,11 +29,22 @@ function App() {
       .then(data => {
         setProducts(data)
         setStatus("success")
-      }).catch(err => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      }).catch((_err) => {
         setStatus("error")
       })
 
   }, [])
+
+  // console.log(status)
+
+  if(status === "loading"){
+    return(
+      <div className="grid place-content-center">
+        <h1 className="text-6xl">Loading</h1>
+      </div>
+    )
+  }
 
   return (
     <>
@@ -42,7 +53,7 @@ function App() {
         <Button onClick={() => setCount(count + 1)}>This is test Button</Button>
       </div> */}
 
-      <div className="grid grid-flow-row grid-cols-6 gap-4">
+      <div className="mx-16 grid grid-flow-row grid-cols-4 gap-4">
         {products.map((product) => (
           <CardComponent
             key={product.id}

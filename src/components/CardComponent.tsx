@@ -11,11 +11,18 @@ export default function CardComponent(props: CardComponentProps) {
         <div>
             <Card
                 className="max-w-sm"
-                imgAlt="Apple Watch Series 7 in colors pink, silver, and black"
-                imgSrc={props.image}
+                // imgAlt="Apple Watch Series 7 in colors pink, silver, and black"
+                // imgSrc={props.image}
+                renderImage={() => (
+                    <img 
+                        className="h-[300px] overflow-hidden object-cover"
+                        src={props.image} 
+                        alt={props.title} 
+                    />
+                )}
             >
                 <a href="#">
-                    <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+                    <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white line-clamp-1">
                         {props.title}
                     </h5>
                 </a>
@@ -65,7 +72,7 @@ export default function CardComponent(props: CardComponentProps) {
                     </span>
                 </div>
                 <div className="flex items-center justify-between">
-                    <span className="text-3xl font-bold text-gray-900 dark:text-white">
+                    <span className="text-2xl font-bold text-gray-900 dark:text-white">
                         ${props.price}
                     </span>
                     <a
