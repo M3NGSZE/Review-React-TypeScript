@@ -25,6 +25,7 @@ function App() {
   const [products, setProducts] = useState<Products[]>([]);
   const [status, setStatus] = useState<Status>("idle");
   const [openModal, setOpenModal] = useState(true);
+  const [dataForm, setDataForm] = useState({})
 
   useEffect(() => {
     // console.log("Component mounted")
@@ -51,6 +52,10 @@ function App() {
         <h1 className="text-6xl">Loading</h1>
       </div>
     );
+  }
+
+  function getDataForm(product: any){
+    console.log(product)
   }
 
   return (
@@ -80,7 +85,7 @@ function App() {
         <ModalHeader>Create Product</ModalHeader>
         <ModalBody>
           <div className="space-y-6">
-            <FormCreateProduct/>
+            <FormCreateProduct getDataForm = {getDataForm} />
           </div>
         </ModalBody>
         <ModalFooter>

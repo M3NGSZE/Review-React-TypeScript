@@ -6,7 +6,7 @@ type ErrorType = {
     price: string
 }
 
-export function FormCreateProduct() {
+export function FormCreateProduct({getDataForm} : any) {
 
     const [title, setTitle] = useState("")
     const [price, setPrice] = useState(0)
@@ -23,27 +23,31 @@ export function FormCreateProduct() {
     useEffect(() => {
         if(title.length < 3){
             setError((prev) =>  {
-                console.log("previous object: ", prev)
+                // console.log("previous object: ", prev)
                 return { ...prev, title: "Title must be at least 3"}
             })
         }else{
             setError((prev) =>  {
-                console.log("previous object: ", prev)
+                // console.log("previous object: ", prev)
                 return { ...prev, title: ""}
             })
         }
         if(price <= 0){
             setError((prev) => {
-                console.log("previous object: ", prev);
+                // console.log("previous object: ", prev);
                 return { ...prev, price: "Price must be greater than 0" };
             })
         }else{
             setError((prev) =>  {
-                console.log("previous object: ", prev)
+                // console.log("previous object: ", prev)
                 return { ...prev, price: "" };
             })
         }
     }, [title, price])
+
+    useEffect(() => {
+        getDataForm({ title, price, description, category, image })
+    },[title, price, description, category, image])
 
     return (
         <form className="flex max-w-md flex-col gap-4">
