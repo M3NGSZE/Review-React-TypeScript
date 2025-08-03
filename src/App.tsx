@@ -46,8 +46,8 @@ function App() {
         setProducts(data);
         setStatus("success");
       })
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       .catch((err) => {
+        console.log(err)
         setStatus("error");
       });
   }, []);

@@ -23,10 +23,10 @@ export function FormCreateProduct({getDataForm} : FormCreateProductProps) {
     const [title, setTitle] = useState("")
     const [price, setPrice] = useState(0)
     const [description, setDescription] = useState("")
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [category, setCategory] = useState("Electronic");
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const [image, setImage] = useState("https://flowbite-react.com/images/products/apple-watch.png");
+
+    // if we use default value, we do have to use set function
+    const [category] = useState("Electronic");
+    const [image] = useState("https://flowbite-react.com/images/products/apple-watch.png");
 
     const [error, setError] = useState<ErrorType>({
         title: "",
@@ -61,6 +61,7 @@ export function FormCreateProduct({getDataForm} : FormCreateProductProps) {
 
     useEffect(() => {
         getDataForm({ title, price, description, category, image })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     },[title, price, description, category, image])
 
     // Handle form submission
