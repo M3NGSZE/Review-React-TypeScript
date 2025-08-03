@@ -24,7 +24,7 @@ function App() {
   // const [count, setCount] = useState(0)
   const [products, setProducts] = useState<Products[]>([]);
   const [status, setStatus] = useState<Status>("idle");
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
   const [dataForm, setDataForm] = useState({})
 
   useEffect(() => {
@@ -55,7 +55,26 @@ function App() {
   }
 
   function getDataForm(product: any){
-    console.log(product)
+    // console.log(product)
+    setDataForm(product)
+  }
+
+  const createProduct = () => {
+    fetch("https://fakestoreapi.com/products", {
+      method: "POST",
+      body: JSON.stringify(dataForm),
+      headers: {
+        "Conten-type": "application/json"
+      },
+    }).then((res) => res.json())
+    .then((data) => {
+      console.log("Create product success fully")
+      console.log(data)
+    }).catch((err) => {
+      console.log(err)
+    })
+
+    setOpenModal(false)
   }
 
   return (
@@ -85,11 +104,11 @@ function App() {
         <ModalHeader>Create Product</ModalHeader>
         <ModalBody>
           <div className="space-y-6">
-            <FormCreateProduct getDataForm = {getDataForm} />
+            <FormCreateProduct getDataForm={getDataForm} />
           </div>
         </ModalBody>
         <ModalFooter>
-          <Button onClick={() => setOpenModal(false)}>Create</Button>
+          <Button onClick={() => createProduct()}>Create</Button>
           <Button color="alternative" onClick={() => setOpenModal(false)}>
             Cancel
           </Button>
