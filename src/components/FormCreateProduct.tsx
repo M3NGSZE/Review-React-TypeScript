@@ -6,12 +6,26 @@ type ErrorType = {
     price: string
 }
 
-export function FormCreateProduct({getDataForm} : any) {
+type ProductData = {
+    title: string;
+    price: number;
+    description: string;
+    category: string;
+    image: string;
+}
+
+type FormCreateProductProps = {
+    getDataForm: (data: ProductData) => void;
+}
+
+export function FormCreateProduct({getDataForm} : FormCreateProductProps) {
 
     const [title, setTitle] = useState("")
     const [price, setPrice] = useState(0)
     const [description, setDescription] = useState("")
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [category, setCategory] = useState("Electronic");
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [image, setImage] = useState("https://flowbite-react.com/images/products/apple-watch.png");
 
     const [error, setError] = useState<ErrorType>({
@@ -49,8 +63,16 @@ export function FormCreateProduct({getDataForm} : any) {
         getDataForm({ title, price, description, category, image })
     },[title, price, description, category, image])
 
+    // Handle form submission
+    // const handleSubmit = (e: React.FormEvent) => {
+    //     e.preventDefault();
+    //     if (!error.title && !error.price) {
+    //     getDataForm({ title, price, description, category, image });
+    //     }
+    // };
+
     return (
-        <form className="flex max-w-md flex-col gap-4">
+        <form className="flex max-w-md flex-col gap-4" >
             <div>
                 <div className="mb-2 block">
                     <Label htmlFor="title">Product Title</Label>

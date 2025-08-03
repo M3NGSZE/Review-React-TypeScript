@@ -20,6 +20,14 @@ type Products = {
   readonly image: string;
 };
 
+type ProductFormData = {
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+};
+
 function App() {
   // const [count, setCount] = useState(0)
   const [products, setProducts] = useState<Products[]>([]);
@@ -54,9 +62,9 @@ function App() {
     );
   }
 
-  function getDataForm(product: any){
+  function getDataForm(product: ProductFormData) {
     // console.log(product)
-    setDataForm(product)
+    setDataForm(product);
   }
 
   const createProduct = () => {
