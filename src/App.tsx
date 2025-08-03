@@ -1,6 +1,7 @@
 import { Button } from "flowbite-react";
 import "./App.css";
 import { useEffect, useState } from "react";
+import CardComponent from "./components/CardComponent";
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
 type Products = {
@@ -38,7 +39,13 @@ function App() {
     <>
       <div className="h-screen grid place-content-center">
         <h1 className="text-center">{count}</h1>
-        <Button onClick={() => setCount(count+1)}>This is test Button</Button>
+        <Button onClick={() => setCount(count + 1)}>This is test Button</Button>
+
+        <CardComponent
+          title="Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport"
+          image="https://flowbite-react.com/images/products/apple-watch.png"
+          price={599}
+        />
       </div>
     </>
   );
