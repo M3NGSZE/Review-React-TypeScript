@@ -15,7 +15,7 @@ type Products = {
 
 function App() {
 
-  const [count, setCount] = useState(0) 
+  // const [count, setCount] = useState(0) 
   const [products, setProducts] = useState<Products[]>([]);
   const [status, setStatus] = useState<Status>('idle')
 
@@ -37,15 +37,20 @@ function App() {
 
   return (
     <>
-      <div className="h-screen grid place-content-center">
+      {/* <div className="grid place-content-center">
         <h1 className="text-center">{count}</h1>
         <Button onClick={() => setCount(count + 1)}>This is test Button</Button>
+      </div> */}
 
-        <CardComponent
-          title="Apple Watch Series 7 GPS, Aluminium Case, Starlight Sport"
-          image="https://flowbite-react.com/images/products/apple-watch.png"
-          price={599}
-        />
+      <div className="grid grid-flow-row grid-cols-6 gap-4">
+        {products.map((product) => (
+          <CardComponent
+            key={product.id}
+            title={product.title}
+            image={product.image}
+            price={product.price}
+          />
+        ))}
       </div>
     </>
   );
